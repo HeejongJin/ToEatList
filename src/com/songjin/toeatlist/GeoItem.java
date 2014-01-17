@@ -1,6 +1,9 @@
 package com.songjin.toeatlist;
 
-public class GeoItem
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class GeoItem implements Parcelable
 {
 	/* Fields */
 	private String mLocationname;
@@ -32,5 +35,19 @@ public class GeoItem
 	public GeoPoint getPoint()
 	{
 		return mPoint;
+	}
+
+	/* Implemented methods */
+	@Override
+	public int describeContents()
+	{
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags)
+	{
+		dest.writeString(mLocationname);
+		dest.writeParcelable(mPoint, 0);
 	}
 }

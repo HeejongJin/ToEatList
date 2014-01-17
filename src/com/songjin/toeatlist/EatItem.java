@@ -2,9 +2,10 @@ package com.songjin.toeatlist;
 
 import java.util.ArrayList;
 
-import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class EatItem
+public class EatItem implements Parcelable
 {
 	/* Fields */
 	private String mStorename;
@@ -91,5 +92,22 @@ public class EatItem
 	BitmapItem getBitmapitem(int position)
 	{
 		return mBitmaps.get(position);
+	}
+
+	/* Implemented methods */
+	@Override
+	public int describeContents()
+	{
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags)
+	{
+		dest.writeString(mStorename);
+		dest.writeParcelable(mLocation, 0);
+		dest.writeStringList(mMenunames);
+		dest.writeStringList(mURLs);
+		dest.writeList(mBitmaps);
 	}
 }

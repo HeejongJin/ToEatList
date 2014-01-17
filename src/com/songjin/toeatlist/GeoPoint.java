@@ -1,6 +1,9 @@
 package com.songjin.toeatlist;
 
-public class GeoPoint
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class GeoPoint implements Parcelable
 {
 	/* Constants */
 	private static double E6 = 1000000.0;
@@ -85,4 +88,18 @@ public class GeoPoint
 		return 0.0;
 	}
 	*/
+	
+	/* Implemented methods */
+	@Override
+	public int describeContents()
+	{
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags)
+	{
+		dest.writeInt(mLongitudeE6);
+		dest.writeInt(mLatitudeE6);
+	}
 }
