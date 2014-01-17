@@ -40,14 +40,15 @@
 	    
 	    <!-- LOCATION_INFO -->
 	    <LinearLayout
-	        android:padding="8dp"
+	        android:paddingTop="8dp"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:orientation="horizontal"
 		>
 	        <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
+	            android:paddingTop="4dp"
+		        android:layout_width="16dp"
+		        android:layout_height="16dp"
 	            android:src="@drawable/ic_locationinfo"
 			/>
 		    <TextView
