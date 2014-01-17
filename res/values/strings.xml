@@ -4,5 +4,10 @@
     <string name="app_name">ToEatList</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+    <string-array name="left_drawer_array">
+        <item>Menu1</item>
+        <item>Menu2</item>
+    </string-array>
+    <string name="left_drawer_open">Open left drawer</string>
+    <string name="left_drawer_close">Close left drawer</string>
 </resources>
