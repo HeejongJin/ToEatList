@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style 
+        name="PinkTheme"
+        parent="@android:style/Theme.Holo.Light"
+	>
+        <item name="android:actionBarStyle">@style/PinkActionBar</item>
+    </style>
+    
+    <style
+        name="PinkActionBar"
+        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse"
+	>
+        <item name="android:background">@drawable/ab_solid_pinkactionbar</item>
+    </style>
+</resources>
