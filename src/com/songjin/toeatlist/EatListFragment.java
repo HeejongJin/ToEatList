@@ -1,13 +1,14 @@
 package com.songjin.toeatlist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -30,18 +31,37 @@ public class EatListFragment extends Fragment
 		
 		mEatList = (ListView)mRootView.findViewById(R.id.eatlist_listview);
 		
-		/* Listview test data */
-		String str[] = 
-		{
-			"line1", "line2", "line3", "line4",
-			"line5", "line6", "line7", "line8"
-		};
+		/* Listview test data */	
+		List<EatItem> eatItems;
+		eatItems = new ArrayList<EatItem>();
 		
-		ArrayAdapter<String> adapter;
-		adapter = new ArrayAdapter<String>(mRootView.getContext(), android.R.layout.simple_list_item_1, str);
+		EatItem eatItem;
+		
+		eatItem = new EatItem("STORE_NAME", new GeoItem("LOCATION_INFO", new GeoPoint()));
+		eatItem.addMenuName("MENU_NAME");
+		eatItems.add(eatItem);
+		
+		eatItem = new EatItem("Store1", new GeoItem("Location1", new GeoPoint()));
+		eatItem.addMenuName("Menu1");
+		eatItems.add(eatItem);
+		
+		eatItem = new EatItem("Store2", new GeoItem("Location2", new GeoPoint()));
+		eatItem.addMenuName("Menu1");
+		eatItems.add(eatItem);
+		
+		eatItem = new EatItem("Store3", new GeoItem("Location3", new GeoPoint()));
+		eatItem.addMenuName("Menu1");
+		eatItems.add(eatItem);
+		
+		eatItem = new EatItem("Store4", new GeoItem("Location4", new GeoPoint()));
+		eatItem.addMenuName("Menu1");
+		eatItems.add(eatItem);
+
+		EatItemAdapter adapter;
+		adapter = new EatItemAdapter(mRootView.getContext(), R.layout.eat_list_item, eatItems);
 		
 		mEatList.setAdapter(adapter);
 		
-		return rootView;
+		return mRootView;
 	}
 }

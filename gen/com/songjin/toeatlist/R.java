@@ -35,7 +35,7 @@ public final class R {
         public static final int drawer_layout=0x7f090000;
         public static final int eatlist_listview=0x7f090007;
         public static final int left_drawer=0x7f090002;
-        public static final int location_info_name=0x7f090006;
+        public static final int locationinfo_text=0x7f090006;
         public static final int menuname_text=0x7f090005;
         public static final int preview_image=0x7f090003;
         public static final int storename_text=0x7f090004;
