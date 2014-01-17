@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+>
+	<LinearLayout
+	    android:padding="16dp"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	>
+		<RelativeLayout
+	    	android:layout_width="match_parent"
+	    	android:layout_height="56dp"
+		>
+			<!-- Names -->
+			<LinearLayout
+			    android:layout_alignParentLeft="true"
+		    	android:layout_width="match_parent"
+		    	android:layout_height="match_parent"
+		    	android:orientation="vertical"
+			>
+				<!-- STORE_NAME -->
+			    <TextView
+			        android:paddingLeft="4dp"
+			        android:textSize="16dp"
+			        android:id="@+id/storename_text"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+				/>
+			    
+			    <!-- MENU_NAME -->
+			    <TextView
+			        android:padding="4dp"
+			        android:textColor="#7A7878"
+			        android:id="@+id/menuname_text"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+				/>
+		    </LinearLayout>
+		    
+			<!-- Share buttons -->
+			<LinearLayout
+			    android:layout_alignParentRight="true"
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="match_parent"
+		    	android:orientation="horizontal"
+			>
+			    <!-- Facebook share button -->
+			    <ImageView
+		            android:paddingLeft="8dp"
+			        android:layout_width="44dp"
+			        android:layout_height="44dp"
+		            android:src="@drawable/ic_facebook"
+				/>
+			    
+			    <!-- Twitter share button -->
+			    <ImageView
+		            android:paddingLeft="8dp"
+			        android:layout_width="44dp"
+			        android:layout_height="44dp"
+		            android:src="@drawable/ic_twitter"
+				/>
+			    
+			    <!-- Google plus share button -->
+			    <ImageView
+		            android:paddingLeft="8dp"
+			        android:layout_width="44dp"
+			        android:layout_height="44dp"
+		            android:src="@drawable/ic_googleplus"
+				/>
+			    
+			    <!-- KakaoTalk share button -->
+			    <ImageView
+		            android:paddingLeft="8dp"
+			        android:layout_width="44dp"
+			        android:layout_height="44dp"
+		            android:src="@drawable/ic_kakaotalk"
+				/>
+			</LinearLayout>
+	    </RelativeLayout>
+	    
+	    <!-- LOCATION_INFO -->
+	    <LinearLayout
+	        android:paddingTop="8dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+		>
+	        <ImageView
+	            android:paddingTop="4dp"
+		        android:layout_width="16dp"
+		        android:layout_height="16dp"
+	            android:src="@drawable/ic_locationinfo"
+			/>
+		    <TextView
+		        android:textColor="#7A7878"
+		        android:id="@+id/locationinfo_text"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+			/>
+	    </LinearLayout>
+	    
+	    <!-- URL -->
+	    <LinearLayout
+	        android:paddingTop="8dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+		>
+	        <ImageView
+	            android:paddingTop="4dp"
+		        android:layout_width="16dp"
+		        android:layout_height="16dp"
+	            android:src="@drawable/ic_urllink"
+			/>
+		    <TextView
+		        android:textColor="#7A7878"
+		        android:id="@+id/URL_text"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+			/>
+	    </LinearLayout>
+	</LinearLayout>
+	
+	<!-- Bitmap container -->
+	<LinearLayout
+	    android:id="@+id/bitmapContainer_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	>
+	</LinearLayout>
+</LinearLayout>
