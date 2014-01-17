@@ -1,6 +1,8 @@
 package com.songjin.toeatlist;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -96,6 +98,15 @@ public class MainActivity extends Activity
 		
         // Set the list's click listener
 		mLeftDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		
+        if (savedInstanceState == null)
+        {
+            // update the main content by replacing fragments
+            Fragment fragment = new EatListFragment();
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        }
 	}
 	
     @Override
