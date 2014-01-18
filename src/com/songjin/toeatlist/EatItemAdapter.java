@@ -47,7 +47,10 @@ public class EatItemAdapter extends ArrayAdapter<EatItem>
 		// Temporary set image to ab_solid_pinkactionbar
 		ImageView imagePreview;
 		imagePreview = (ImageView)view.findViewById(R.id.preview_image);
-		imagePreview.setBackgroundResource(R.drawable.ab_solid_pinkactionbar);
+		if (0 < eatItem.getBitmapCount())
+		{
+			imagePreview.setImageBitmap(eatItem.getBitmapitem(0).getSubBitmap(0));
+		}
 		
 		TextView textStorename;
 		textStorename = (TextView)view.findViewById(R.id.storename_text);

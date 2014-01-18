@@ -12,6 +12,7 @@
 	    android:id="@+id/preview_image"
 	    android:layout_width="155dp"
 	    android:layout_height="96dp"
+	    android:background="@android:color/darker_gray"
 	/>
 	
 	<!-- Summary -->
