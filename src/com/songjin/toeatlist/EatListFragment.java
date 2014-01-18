@@ -19,6 +19,7 @@ import android.widget.ListView;
 public class EatListFragment extends Fragment
 {
 	private static final String TAG = "ToEatList";
+	private static final String TITLE = "TO EAT LIST FOR YOU";
 	
 	private View mRootView;
 	private ListView mEatList;
@@ -28,6 +29,8 @@ public class EatListFragment extends Fragment
 							Bundle savedInstnaceState)
 	{
 		Log.d(TAG, "EatListFragment-onCreateView()");
+		
+		getActivity().getActionBar().setTitle(TITLE);
 		
 		View rootView;
 		rootView = inflater.inflate(R.layout.fragment_eatlist, container, false);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class EatListDetailFragment extends Fragment
 {
 	private static final String TAG = "ToEatList";
+	private static final String TITLE = "I ... MUST EAT THIS";
 	
 	private View mRootView;
 	private EatItem mEatItem;
@@ -20,6 +21,8 @@ public class EatListDetailFragment extends Fragment
 							Bundle savedInstnaceState)
 	{
 		Log.d(TAG, "EatListDetailFragment-onCreateView()");
+		
+		getActivity().getActionBar().setTitle(TITLE);
 		
 		Bundle args;
 		args = getArguments();
