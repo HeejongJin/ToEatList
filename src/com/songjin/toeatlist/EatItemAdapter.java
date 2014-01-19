@@ -38,7 +38,7 @@ public class EatItemAdapter extends ArrayAdapter<EatItem>
 		{
 			LayoutInflater inflater;
 			inflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.eat_list_item, parent, false);
+			view = inflater.inflate(R.layout.item_eatlist, parent, false);
 		}
 		
 		EatItem eatItem;

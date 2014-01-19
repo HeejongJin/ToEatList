@@ -70,7 +70,7 @@ public class EatListFragment extends Fragment
 		eatItems.add(eatItem);
 
 		EatItemAdapter adapter;
-		adapter = new EatItemAdapter(mRootView.getContext(), R.layout.eat_list_item, eatItems);
+		adapter = new EatItemAdapter(mRootView.getContext(), R.layout.item_eatlist, eatItems);
 		
 		mEatList.setAdapter(adapter);
 		

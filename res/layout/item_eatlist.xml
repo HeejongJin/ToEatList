@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    android:padding="8dp"
+    android:background="@drawable/bg_frame"
+>
+	<!-- Container under the bg_frame background -->
+	<LinearLayout
+	    android:layout_marginLeft="3dp"
+	    android:layout_marginBottom="3dp"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	>
+		<!-- Preview Image -->
+		<ImageView
+		    android:id="@+id/preview_image"
+		    android:layout_width="178dp"
+		    android:layout_height="110dp"
+		    android:background="@android:color/darker_gray"
+		/>
+		
+		<!-- Summary -->
+		<LinearLayout
+		    android:padding="8dp"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		>
+			<!-- STORE_NAME -->
+		    <TextView
+		        android:id="@+id/storename_text"
+		        android:paddingBottom="8dp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+			/>
+		    
+		    <!-- MENU_NAME -->
+		    <TextView
+		        android:id="@+id/menuname_text"
+		        android:paddingBottom="8dp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textColor="#7A7878"
+			/>
+		    
+		    <!-- Margin -->
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="8dp"
+			/>
+		    
+		    <!-- LOCATION_INFO -->
+		    <LinearLayout
+		        android:paddingBottom="8dp"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+			>
+		        <ImageView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+		            android:src="@drawable/ic_locationinfo"
+				/>
+			    <TextView
+			        android:id="@+id/locationinfo_text"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textColor="#7A7878"
+				/>
+		    </LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
