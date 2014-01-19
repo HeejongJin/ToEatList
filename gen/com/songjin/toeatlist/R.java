@@ -26,21 +26,23 @@ public final class R {
     public static final class drawable {
         public static final int ab_solid_pinkactionbar=0x7f020000;
         public static final int bg_style=0x7f020001;
-        public static final int ic_drawer=0x7f020002;
-        public static final int ic_facebook=0x7f020003;
-        public static final int ic_googleplus=0x7f020004;
-        public static final int ic_kakaotalk=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int ic_locationinfo=0x7f020007;
-        public static final int ic_twitter=0x7f020008;
-        public static final int ic_urllink=0x7f020009;
+        public static final int btn_add=0x7f020002;
+        public static final int ic_drawer=0x7f020003;
+        public static final int ic_facebook=0x7f020004;
+        public static final int ic_googleplus=0x7f020005;
+        public static final int ic_kakaotalk=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_locationinfo=0x7f020008;
+        public static final int ic_twitter=0x7f020009;
+        public static final int ic_urllink=0x7f02000a;
     }
     public static final class id {
-        public static final int URL_text=0x7f090008;
-        public static final int action_settings=0x7f09000a;
-        public static final int bitmapContainer_layout=0x7f090009;
+        public static final int URL_text=0x7f090009;
+        public static final int action_settings=0x7f09000b;
+        public static final int bitmapContainer_layout=0x7f09000a;
         public static final int content_frame=0x7f090001;
         public static final int drawer_layout=0x7f090000;
+        public static final int eatlist_add=0x7f090008;
         public static final int eatlist_listview=0x7f090007;
         public static final int left_drawer=0x7f090002;
         public static final int locationinfo_text=0x7f090006;
