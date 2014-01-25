@@ -9,6 +9,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,10 @@ import android.widget.ListView;
 public class MainActivity extends Activity
 {
 	private static final String TAG = "ToEatList";
+	
+	private static int mFragmentId = 1;
+	private static final int FRAGMENT_EAT_LIST = 1;
+	private static final int FRAGMENT_EAT_LIST_DETAIL = 2;
 	
 	private String[] mLeftDrawerTitles;
 	private DrawerLayout mDrawerLayout;
@@ -101,6 +106,8 @@ public class MainActivity extends Activity
 		
         if (savedInstanceState == null)
         {
+        	mFragmentId = FRAGMENT_EAT_LIST;
+        	
             // update the main content by replacing fragments
             Fragment fragment = new EatListFragment();
 
@@ -111,7 +118,7 @@ public class MainActivity extends Activity
 	
     @Override
     public void onConfigurationChanged(Configuration newConfig)
-    {
+    {    	
         super.onConfigurationChanged(newConfig);
         mLeftDrawerToggle.onConfigurationChanged(newConfig);
     }
@@ -119,22 +126,65 @@ public class MainActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Pass the event to ActionBarDrawerToggle, if it returns
-        // true, then it has handled the app icon touch event
-        if (mLeftDrawerToggle.onOptionsItemSelected(item))
-        {
-          return true;
-        }
-        // Handle your other action bar items...
-
-        return super.onOptionsItemSelected(item);
+		// The action bar home/up action should open or close the drawer.
+		// ActionBarDrawerToggle will take care of this.
+		if (mLeftDrawerToggle.onOptionsItemSelected(item))
+		{
+			return true;
+		}
+		
+		// Handle action buttons
+		switch (item.getItemId())
+		{
+		case R.id.action_view_as_map:
+			// Swap fragment
+			
+			return true;
+			
+		default:
+			return super.onOptionsItemSelected(item);
+		}
     }
 
+    /* Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        // If the nav drawer is open, hide action items related to the content view
+        boolean drawerOpen;
+        drawerOpen = mDrawerLayout.isDrawerOpen(mLeftDrawerList);
+    	
+        Log.d(TAG, ""+drawerOpen);
+        
+    	switch (mFragmentId)
+    	{
+    	case FRAGMENT_EAT_LIST:
+    		menu.findItem(R.id.action_view_as_map).setVisible(!drawerOpen);
+    		break;
+    	}
+        
+        return super.onPrepareOptionsMenu(menu);
+    }
+    
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		switch (mFragmentId)
+		{
+		case FRAGMENT_EAT_LIST:
+			MenuInflater inflater;
+			inflater = getMenuInflater();
+			
+			inflater.inflate(R.menu.eat_list_fragment_actions, menu);
+			
+			return super.onCreateOptionsMenu(menu);
+			
+		case FRAGMENT_EAT_LIST_DETAIL:
+			
+		default:
+			// Inflate the menu; this adds items to the action bar if it is present.
+			getMenuInflater().inflate(R.menu.main, menu);
+			return true;
+		}
 	}
 }
