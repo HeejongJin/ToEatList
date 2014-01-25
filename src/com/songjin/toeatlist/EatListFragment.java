@@ -4,24 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-
 public class EatListFragment extends Fragment
 {
 	private static final String TAG = "ToEatList";
 	private static final String TITLE = "TO EAT LIST FOR YOU";
 	
+	private MainActivity mRootActivity;
 	private View mRootView;
 	private ListView mEatList;
 	
@@ -29,17 +26,21 @@ public class EatListFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							Bundle savedInstnaceState)
 	{
-		Log.d(TAG, "EatListFragment-onCreateView()");
+		Log.i(TAG, "EatListFragment-onCreateView()");
 		
-		getActivity().getActionBar().setTitle(TITLE);
+		// Get root activity
+		mRootActivity = (MainActivity)getActivity();
 		
-		View rootView;
-		rootView = inflater.inflate(R.layout.fragment_eatlist, container, false);
-		mRootView = rootView;
+		// Set title
+		mRootActivity.setTitle(TITLE);
 		
+		// Get root view
+		mRootView = inflater.inflate(R.layout.fragment_eatlist, container, false);
+		
+		// Get views
 		mEatList = (ListView)mRootView.findViewById(R.id.eatlist_listview);
 		
-		/* Listview test data */	
+		/* EatList test data */
 		List<EatItem> eatItems;
 		eatItems = new ArrayList<EatItem>();
 		
@@ -70,11 +71,14 @@ public class EatListFragment extends Fragment
 		eatItem.addURL("BLOG.NAVER.COM/HEEJONGJIN/214");
 		eatItems.add(eatItem);
 
+		// Create adapter for eat list
 		EatItemAdapter adapter;
 		adapter = new EatItemAdapter(mRootView.getContext(), R.layout.item_eatlist, eatItems);
 		
+		// Set adapter
 		mEatList.setAdapter(adapter);
 		
+		// Set listeners
 		mEatList.setOnItemClickListener
 		(
 			new OnItemClickListener()
@@ -82,23 +86,17 @@ public class EatListFragment extends Fragment
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
+					// Get data of selected item
 					EatItem eatItem;
 					eatItem = (EatItem)mEatList.getItemAtPosition(position);
 					
-		            // update the main content by replacing fragments
-		            Fragment fragment = new EatListDetailFragment();
-		            
+					// Create arguments and put data
 		            Bundle args;
 		            args = new Bundle();
 		            args.putParcelable("EatItem", eatItem);
 		            
-		            fragment.setArguments(args);
-
-		            FragmentTransaction transaction;
-		            transaction = getFragmentManager().beginTransaction();
-		            transaction.replace(R.id.content_frame, fragment);
-		            transaction.addToBackStack("EatListFragment");
-		            transaction.commit();
+					// Replace fragment
+					mRootActivity.replaceFragment(true, R.layout.fragment_eatlist_detail, args);
 				}
 			}
 		);

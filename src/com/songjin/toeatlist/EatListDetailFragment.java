@@ -13,6 +13,7 @@ public class EatListDetailFragment extends Fragment
 	private static final String TAG = "ToEatList";
 	private static final String TITLE = "I ... MUST EAT THIS";
 	
+	private MainActivity mRootActivity;
 	private View mRootView;
 	private EatItem mEatItem;
 	
@@ -20,40 +21,53 @@ public class EatListDetailFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							Bundle savedInstnaceState)
 	{
-		Log.d(TAG, "EatListDetailFragment-onCreateView()");
+		Log.i(TAG, "EatListDetailFragment-onCreateView()");
 		
-		getActivity().getActionBar().setTitle(TITLE);
+		// Get root activity
+		mRootActivity = (MainActivity)getActivity();
 		
-		Bundle args;
-		args = getArguments();
-		mEatItem = args.getParcelable("EatItem");
+		// Set title
+		mRootActivity.setTitle(TITLE);
 		
-		View rootView;
-		rootView = inflater.inflate(R.layout.fragment_eatlist_detail, container, false);
-		mRootView = rootView;
+		// Get root view
+		mRootView = inflater.inflate(R.layout.fragment_eatlist_detail, container, false);
 		
+		// Get arguments
+		EatItem eatItem;
+		eatItem = getArguments().getParcelable("EatItem");
+		
+		// Update data from arguments
+		updateData(eatItem);
+		
+		return mRootView;
+	}
+	
+	private void updateData(EatItem eatItem)
+	{
+		// Fill view data
 		TextView textStorename;
 		textStorename = (TextView)mRootView.findViewById(R.id.storename_text);
-		textStorename.setText(mEatItem.getStorename());
+		textStorename.setText(eatItem.getStorename());
 		
 		TextView textMenuname;
 		textMenuname = (TextView)mRootView.findViewById(R.id.menuname_text);
-		if (0 < mEatItem.getMenunameCount())
+		if (0 < eatItem.getMenunameCount())
 		{
-			textMenuname.setText(mEatItem.getMenuname(0));
+			textMenuname.setText(eatItem.getMenuname(0));
 		}
 		
 		TextView textLocationinfo;
 		textLocationinfo = (TextView)mRootView.findViewById(R.id.locationinfo_text);
-		textLocationinfo.setText(mEatItem.getLocation().getLocationname());
+		textLocationinfo.setText(eatItem.getLocation().getLocationname());
 		
 		TextView textURL;
 		textURL = (TextView)mRootView.findViewById(R.id.URL_text);
-		if (0 < mEatItem.getURLCount())
+		if (0 < eatItem.getURLCount())
 		{
-			textURL.setText(mEatItem.getURL(0));
+			textURL.setText(eatItem.getURL(0));
 		}
 		
-		return mRootView;
+		// Sync member variable(mEatItem)
+		mEatItem = eatItem;
 	}
 }

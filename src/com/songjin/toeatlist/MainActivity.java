@@ -2,7 +2,7 @@ package com.songjin.toeatlist;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -12,31 +12,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 public class MainActivity extends Activity
 {
 	private static final String TAG = "ToEatList";
 	
-	private static int mFragmentId = 1;
-	private static final int FRAGMENT_EAT_LIST = 1;
-	private static final int FRAGMENT_EAT_LIST_DETAIL = 2;
+	private static int mFragmentResID;
 	
-	private String[] mLeftDrawerTitles;
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mLeftDrawerToggle;
-	private ListView mLeftDrawerList;
-	
-	private class DrawerItemClickListener implements ListView.OnItemClickListener
-	{
-	    @Override
-	    public void onItemClick(AdapterView parent, View view, int position, long id)
-	    {
-	    	
-	    }
-	}
 	
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
@@ -50,12 +34,12 @@ public class MainActivity extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onCreate()");
+		Log.i(TAG, "MainActivity-onCreate()");
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		mLeftDrawerTitles = getResources().getStringArray(R.array.left_drawer_array);
+		// Get views
 		mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 		
 		// Create new drawer toggle
@@ -69,60 +53,54 @@ public class MainActivity extends Activity
 				R.string.left_drawer_close	/* Close drawer description */
 			)
 			{
-	            /** Called when a drawer has settled in a completely open state. */
 	            public void onDrawerOpened(View drawerView)
 	            {
 	                super.onDrawerOpened(drawerView);
 	            }
 	            
-				/** Called when a drawer has settled in a completely closed state. */
 	            public void onDrawerClosed(View view)
 	            {
 	                super.onDrawerClosed(view);
 	            }
 			};
 
-	    // Set the drawer toggle as the DrawerListener
+	    // Set the drawer listener
 	    mDrawerLayout.setDrawerListener(mLeftDrawerToggle);
 	    
+	    // Enable ActionBar icon to behave as action to toggle navigation drawer
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
 	    getActionBar().setHomeButtonEnabled(true);
-	    
-		mLeftDrawerList = (ListView)findViewById(R.id.left_drawer);
-		
-        // Set the adapter for the list view
-		mLeftDrawerList.setAdapter
-		(
-			new ArrayAdapter<String>
-			(
-				this,
-				R.layout.left_drawer_list_item,
-				mLeftDrawerTitles
-			)
-		);
-		
-        // Set the list's click listener
-		mLeftDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		
         if (savedInstanceState == null)
         {
-        	mFragmentId = FRAGMENT_EAT_LIST;
-        	
-            // update the main content by replacing fragments
-            Fragment fragment = new EatListFragment();
-
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        	replaceFragment(false, R.layout.fragment_eatlist, null);
         }
 	}
 	
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {    	
-        super.onConfigurationChanged(newConfig);
-        mLeftDrawerToggle.onConfigurationChanged(newConfig);
-    }
-    
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		// Get menu inflater
+		MenuInflater inflater;
+		inflater = getMenuInflater();
+		
+		switch (mFragmentResID)
+		{
+		case R.layout.fragment_eatlist:
+			// Inflate the menu
+			// This add items to the action bar
+			inflater.inflate(R.menu.eat_list_fragment_actions, menu);
+			break;
+			
+		case R.layout.fragment_eatlist_detail:
+			
+		default:
+			return true;
+		}
+		
+		return super.onCreateOptionsMenu(menu);
+	}
+	
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -145,46 +123,55 @@ public class MainActivity extends Activity
 			return super.onOptionsItemSelected(item);
 		}
     }
-
-    /* Called whenever we call invalidateOptionsMenu() */
+	
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu)
+    public void onConfigurationChanged(Configuration newConfig)
     {
-        // If the nav drawer is open, hide action items related to the content view
-        boolean drawerOpen;
-        drawerOpen = mDrawerLayout.isDrawerOpen(mLeftDrawerList);
-    	
-        Log.d(TAG, ""+drawerOpen);
+        super.onConfigurationChanged(newConfig);
         
-    	switch (mFragmentId)
-    	{
-    	case FRAGMENT_EAT_LIST:
-    		menu.findItem(R.id.action_view_as_map).setVisible(!drawerOpen);
-    		break;
-    	}
-        
-        return super.onPrepareOptionsMenu(menu);
+        mLeftDrawerToggle.onConfigurationChanged(newConfig);
     }
-    
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
+
+	public void replaceFragment(boolean isAddBackStack, int fragmentResID, Bundle args)
 	{
-		switch (mFragmentId)
+		Fragment fragment;
+		
+		switch (fragmentResID)
 		{
-		case FRAGMENT_EAT_LIST:
-			MenuInflater inflater;
-			inflater = getMenuInflater();
+		case R.layout.fragment_eatlist:
+			// Create new fragment
+			fragment = new EatListFragment();
+			break;
 			
-			inflater.inflate(R.menu.eat_list_fragment_actions, menu);
-			
-			return super.onCreateOptionsMenu(menu);
-			
-		case FRAGMENT_EAT_LIST_DETAIL:
+		case R.layout.fragment_eatlist_detail:
+			fragment = new EatListDetailFragment();
+			break;
 			
 		default:
-			// Inflate the menu; this adds items to the action bar if it is present.
-			getMenuInflater().inflate(R.menu.main, menu);
-			return true;
+			return ;
 		}
+		
+		// Put arguments
+		if (args != null)
+		{
+			fragment.setArguments(args);
+		}
+		
+		// Replace the main content in activity		
+		FragmentTransaction fragmentTransaction;
+		fragmentTransaction = getFragmentManager().beginTransaction();
+		if (isAddBackStack)
+		{
+			fragmentTransaction.replace(R.id.content_frame, fragment);
+			fragmentTransaction.addToBackStack("fragment_" + fragmentResID);
+		}
+		else
+		{
+			fragmentTransaction.replace(R.id.content_frame, fragment);
+		}
+		fragmentTransaction.commit();
+		
+		// Sync member variable(mFragmentResId)
+		mFragmentResID = fragmentResID;
 	}
 }

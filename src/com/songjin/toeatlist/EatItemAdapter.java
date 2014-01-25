@@ -13,38 +13,43 @@ import android.widget.TextView;
 
 public class EatItemAdapter extends ArrayAdapter<EatItem>
 {
-
-
+	Context mContext;
+	List<EatItem> mEatItems;
+	
 	public EatItemAdapter(Context context, int textViewResourceId, List<EatItem> objects)
 	{
 		super(context, textViewResourceId, objects);
 
+		// Put data
 		mContext = context;
-		mEatItems = new ArrayList<EatItem>();
 		mEatItems = objects;
-
 	}
-
-	Context mContext;
-	List<EatItem> mEatItems;
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
+		// Set main view
 		View view;
-		view = convertView;
-		
 		if (convertView == null)
 		{
+			// Get inflater
 			LayoutInflater inflater;
 			inflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			
+			// Get view from inflater
 			view = inflater.inflate(R.layout.item_eatlist, parent, false);
 		}
+		else
+		{
+			// Else, get view from convertView
+			view = convertView;
+		}
 		
+		// Get data of selected item
 		EatItem eatItem;
 		eatItem = mEatItems.get(position);
 		
-		// Temporary set image to ab_solid_pinkactionbar
+		// Fill view data
 		ImageView imagePreview;
 		imagePreview = (ImageView)view.findViewById(R.id.preview_image);
 		if (0 < eatItem.getBitmapCount())
