@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 
@@ -23,6 +24,7 @@ public class EatListFragment extends Fragment
 	
 	private View mRootView;
 	private ListView mEatList;
+	private ImageButton mButtonAdd;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +39,7 @@ public class EatListFragment extends Fragment
 		mRootView = rootView;
 		
 		mEatList = (ListView)mRootView.findViewById(R.id.eatlist_listview);
+		mButtonAdd = (ImageButton)mRootView.findViewById(R.id.eatlist_add);
 		
 		/* Listview test data */	
 		List<EatItem> eatItems;
@@ -98,6 +101,25 @@ public class EatListFragment extends Fragment
 		            transaction.replace(R.id.content_frame, fragment);
 		            transaction.addToBackStack("EatListFragment");
 		            transaction.commit();
+				}
+			}
+		);
+		
+		mButtonAdd.setOnClickListener
+		(
+			new OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					Fragment fragment;
+					fragment = new EatListAddFragment();
+					
+					FragmentTransaction transaction;
+					transaction = getFragmentManager().beginTransaction();
+					transaction.replace(R.id.content_frame, fragment);
+					transaction.addToBackStack("EatListFragment");
+					transaction.commit();
 				}
 			}
 		);
