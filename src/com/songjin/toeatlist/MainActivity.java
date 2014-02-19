@@ -30,7 +30,7 @@ public class MainActivity extends Activity
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mLeftDrawerToggle.syncState();
     }
-	
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -93,6 +93,10 @@ public class MainActivity extends Activity
 			break;
 			
 		case R.layout.fragment_eatlist_detail:
+			break;
+			
+		case R.layout.fragment_map:
+			break;
 			
 		default:
 			return true;
@@ -116,7 +120,7 @@ public class MainActivity extends Activity
 		{
 		case R.id.action_view_as_map:
 			// Swap fragment
-			
+			replaceFragment(false, R.layout.fragment_map, null);
 			return true;
 			
 		default:
@@ -145,6 +149,10 @@ public class MainActivity extends Activity
 			
 		case R.layout.fragment_eatlist_detail:
 			fragment = new EatListDetailFragment();
+			break;
+			
+		case R.layout.fragment_map:
+			fragment = new MapFragment();
 			break;
 			
 		default:
