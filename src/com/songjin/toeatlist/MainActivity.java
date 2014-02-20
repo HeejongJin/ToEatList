@@ -3,6 +3,7 @@ package com.songjin.toeatlist;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -35,6 +36,10 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		Log.i(TAG, "MainActivity-onCreate()");
+		
+		Intent intent;
+		intent = new Intent(this, FileObserverService.class);
+		startService(intent);
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
