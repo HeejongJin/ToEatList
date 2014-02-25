@@ -236,23 +236,31 @@ containing a value of this type.
     }
     public static final class id {
         public static final int URL_text=0x7f05000d;
-        public static final int action_view_as_map=0x7f050011;
+        public static final int action_view_as_map=0x7f050019;
         public static final int bitmapContainer_layout=0x7f05000e;
         public static final int content_frame=0x7f050006;
         public static final int drawer_layout=0x7f050005;
         public static final int eatlist_add=0x7f050009;
         public static final int eatlist_listview=0x7f050008;
         public static final int hybrid=0x7f050004;
+        public static final int icon=0x7f050012;
+        public static final int info=0x7f050017;
         public static final int left_drawer=0x7f050007;
+        public static final int line1=0x7f050013;
+        public static final int line2=0x7f050015;
         public static final int locationinfo_text=0x7f05000c;
         public static final int map=0x7f05000f;
         public static final int menuname_text=0x7f05000b;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int preview_image=0x7f050010;
+        public static final int right_icon=0x7f050018;
         public static final int satellite=0x7f050002;
+        public static final int status_bar_latest_event_content=0x7f050011;
         public static final int storename_text=0x7f05000a;
         public static final int terrain=0x7f050003;
+        public static final int text=0x7f050016;
+        public static final int title=0x7f050014;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -264,6 +272,7 @@ containing a value of this type.
         public static final int fragment_map=0x7f030003;
         public static final int item_eatlist=0x7f030004;
         public static final int left_drawer_list_item=0x7f030005;
+        public static final int notification_taken=0x7f030006;
     }
     public static final class menu {
         public static final int eat_list_fragment_actions=0x7f0b0000;

@@ -13,11 +13,11 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.os.Environment;
 import android.os.FileObserver;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Button;
 
 public class FileObserverService extends Service
 								 implements RecursiveFileObserver.OnFileEventListener
@@ -26,6 +26,7 @@ public class FileObserverService extends Service
 	
 	private List<RecursiveFileObserver> mObservers;
 	private RecursiveFileObserver.OnFileEventListener mFileEventListener;
+	private TakenNotification mTakenNotification;
 	
 	/**
 	 * Similar to android.os.Environment.getExternalStorageDirectory(), except
@@ -111,6 +112,7 @@ public class FileObserverService extends Service
 		}
 		
 		mObservers = new ArrayList<RecursiveFileObserver>();
+		mTakenNotification = new TakenNotification(this);
 		
 		// Get all root path of internal and external storage
 		String[] pathTarget;
@@ -120,7 +122,7 @@ public class FileObserverService extends Service
 		for (int i=0 ; i<pathTarget.length ; i++)
 		{
 			RecursiveFileObserver observer;
-			observer = new RecursiveFileObserver(pathTarget[i], FileObserver.CREATE);
+			observer = new RecursiveFileObserver(pathTarget[i], FileObserver.CLOSE_WRITE);
 			
 			observer.startWatching();
 			observer.setOnFileEventListener(this);
@@ -145,8 +147,8 @@ public class FileObserverService extends Service
 	{
 		switch (event)
 		{
-		case FileObserver.CREATE:
-			Log.i(TAG, "onFileEvent()-FileObserver.Create" + path);
+		case FileObserver.CLOSE_WRITE:
+			Log.i(TAG, "onFileEvent()-FileObserver.CLOSE_WRITE" + path);
 			
 			// Get file extension
 			String fileExt;
@@ -170,7 +172,23 @@ public class FileObserverService extends Service
 			{
 				break;
 			}
-				
+			
+			// Set resize option
+			BitmapFactory.Options options;
+			options = new BitmapFactory.Options();
+			options.inSampleSize = 4;
+			
+			// Get bitmap from file path
+			Bitmap takenBitmap;
+			takenBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), options);
+			if (takenBitmap == null)
+			{
+				break;
+			}
+			
+			// Add notification stack
+			mTakenNotification.AddTaken(takenBitmap);
+			
 			break;
 		}
 	}

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- Bring and edit android SDK's resource file -->
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/status_bar_latest_event_content"
+	android:layout_width="match_parent"
+	android:layout_height="64dp"
+	android:background="#000000"
+>
+	<ImageView
+		android:id="@+id/icon"
+		android:layout_width="@android:dimen/notification_large_icon_width"
+		android:layout_height="@android:dimen/notification_large_icon_height"
+		android:scaleType="center"
+	/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="fill_vertical"
+		android:layout_marginLeft="@android:dimen/notification_large_icon_width"
+		android:gravity="top"
+		android:minHeight="@android:dimen/notification_large_icon_height"
+		android:orientation="vertical"
+		android:paddingBottom="2dp"
+		android:paddingRight="8dp"
+		android:paddingTop="2dp"
+	>
+		<LinearLayout
+			android:id="@+id/line1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingTop="6dp"
+			android:layout_marginLeft="8dp"
+			android:orientation="horizontal"
+		>
+			<TextView
+			    android:id="@+id/title"
+				android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent.Title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:ellipsize="marquee"
+				android:fadingEdge="horizontal"
+				android:layout_weight="1"
+				android:text="IS THIS 'TO EAT LIST' ?"
+			/>
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/line2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+		>
+			<TextView
+				android:id="@+id/text"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_weight="1"
+				android:ellipsize="marquee"
+				android:fadingEdge="horizontal"
+				android:singleLine="true"
+				android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
+				android:text="IF YES, PLEASE TOUCH HERE"
+			/>
+			<TextView
+				android:id="@+id/info"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_weight="0"
+				android:gravity="center"
+				android:paddingLeft="8dp"
+				android:singleLine="true"
+				android:textAppearance="@android:style/TextAppearance.StatusBar.EventContent"
+			/>
+			<ImageView
+				android:id="@+id/right_icon"
+				android:layout_width="16dp"
+				android:layout_height="16dp"
+				android:layout_gravity="center"
+				android:layout_marginLeft="8dp"
+				android:layout_weight="0"
+				android:background="@drawable/ic_launcher"
+				android:scaleType="centerInside"
+			/>
+		</LinearLayout>
+	</LinearLayout>
+</FrameLayout>
